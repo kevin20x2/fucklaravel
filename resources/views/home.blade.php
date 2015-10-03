@@ -5,11 +5,11 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 			<div class="panel panel-default">
-				<div class="panel-heading">²éÑ¯</div>
+				<div class="panel-heading">æŸ¥è¯¢</div>
 				<form action ="{{ action('FaqController@index') }}" method="GET">
 				<input type = "hidden" name="_token" value="{{ csrf_token() }}" required ="required">
 				<input type ="text"  name="kword" class="form-control" >
-				<button class="btn btn-success" >²éÑ¯</button>
+				<button class="btn btn-success" >æŸ¥è¯¢</button>
 				</form>
 			</div>
 		</div>
