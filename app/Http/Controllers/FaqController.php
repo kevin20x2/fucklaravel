@@ -23,6 +23,11 @@ class FaqController extends Controller {
 		$cou = \App\Book::whereRaw($whereStr)->count();
 		$faqs = \App\Book::whereRaw($whereStr)->get();
 		$myResult = array('cou' => $cou,'faqs' => $faqs);
+	//	echo $myResult;
+		if($cou==0)
+		{
+			session()->flash('message_info','没有查询到结果!');
+		}
 		return view('faq',['faqs' => $myResult['faqs'], 'cou' => $myResult['cou'], 'kword' => '$kwords']);
 
 	}

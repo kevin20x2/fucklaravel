@@ -1,7 +1,4 @@
-<head>
-<meta http-equiv="Content-Type" content="text/html;charset=gb2312"/>
-</head>
-@extends('app')
+@extends('master')
 
 @section('content')
 <div class="container">
@@ -25,14 +22,21 @@
 
           <form action="{{ URL('admin/books') }}" method="POST">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <input type="text" name="book_name" class="form-control" value="书名" required="required">
-            <input type="text" name="author" class="form-control" value="作者名" required="required">
-            <input type="text" name="ISBN" class="form-control" value="ISBN" required="required">
-            <input type="text" name="press_name" class="form-control"value="出版社名" required="required">
-            <input type="text" name="press_date" class="form-control" value="出版日期"required="required">
-            <input type="text" name="url" class="form-control"  value="图片链接" required="required">
-            <input type="text" name="in_use" class="form-control" value="是否被借出" required="required">
-            <button class="btn btn-lg btn-info">insert book</button>
+			<p>书名</p>
+            <input type="text" name="book_name" class="form-control" required="required">
+			<p>作者名</p>
+            <input type="text" name="author" class="form-control"  required="required">
+			<p>ISBN</p>
+            <input type="text" name="ISBN" class="form-control"  required="required">
+			<p>出版社</p>
+            <input type="text" name="press_name" class="form-control" required="required">
+			<p>出版时间</p>
+            <input type="text" name="press_date" class="form-control" required="required">
+			<p>图片链接</p>
+            <input type="text" name="url" class="form-control"   required="required">
+            <input type="hidden" name="in_use" class="form-control" value = "0">
+			<p > </p>
+            <button class="btn btn-lg btn-info">插♂入</button>
           </form>
 
         </div>

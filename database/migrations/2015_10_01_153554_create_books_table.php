@@ -21,7 +21,7 @@ class CreateBooksTable extends Migration {
 			$table->string('press_name');
 			$table->integer('press_date');
 			$table->string('url');
-			$table->integer('in_use');
+			$table->boolean('in_use');
 			$table->timestamps();
 		});
 	}

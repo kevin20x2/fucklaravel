@@ -1,7 +1,5 @@
-<head>
-<meta http-equiv="Content-Type" content="text/html;charset=gb2312"/>
-</head>
-@extends('app')
+
+@extends('master')
 
 
 @section('content')
@@ -9,11 +7,12 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <div class="panel panel-default">
-        <div class="panel-heading">后台首页</div>
+        <div class="panel-heading">插入♂一本书</div>
 
         <div class="panel-body">
 
         <a href="{{ URL('admin/books/create') }}" class="btn btn-lg btn-primary">插入♂一本书</a>
+        <a href="{{ URL('admin/lends') }}" class="btn btn-lg btn-primary">借书</a>
 
           @foreach ($books as $book)
             <hr>
