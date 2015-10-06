@@ -13,23 +13,36 @@
 
 Route::get('/', 'WelcomeController@index');
 
-Route::get('home', 'HomeController@index');
-
-Route::get('','FaqController@index');
-
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
+Route::get('login',[
+'middleware' => 'guest', 'as' => 'login', 'uses' => 'loginController@loginGet'
+]);
+Route::post('login',[
+'middleware' => 'guest', 'uses' => 'loginController@loginPost'
 ]);
 
-Route::group(['prefix' => 'admin','namespace' => 'Admin'],function()
-{
-	Route::get('/','AdminHomeController@index');
-	Route::resource('books','BooksController');
-});
-Route::group(['prefix' => 'user','namespace' => 'User'],function()
-{
-	Route::get('/','UserHomeController@index');
-	Route::resource('lends','LendsController');
-	
-});
+Route::get('logout', [
+'middleware' => 'auth' ,'as' => 'logout','uses' => 'loginController@logout'
+]);
+
+Route::get('user/home',[
+	'as' => 'user_home', 'uses' => 'User\UserController@home'
+]);
+Route::get('user/edit',[
+	'as' => 'user_edit' ,'uses'  => 'User\UserController@edit'
+]);
+Route::post('user/update',[
+	'as' => 'user_update', 'uses' => 'User\UserController@update'
+]);
+Route::resource('admin/books', 'Admin\BooksController');
+Route::resource('admin/lends', 'Admin\LendsController');
+Route::get('faq','FaqController@index');
+
+Route::get('admin/books/create',[
+	'as' => 'book_create','uses' => 'Admin\BooksController@create'
+]);
+
+Route::get('user/reserve',[
+	'as' => 'user_reserve' ,'uses' => 'User\ReserveController@work'
+]);
+
+Route::resource('admin','Admin\AdminController');

@@ -15,11 +15,11 @@ class CreateLendsTable extends Migration {
 	{
 		Schema::create('lends', function(Blueprint $table)
 		{
+			$table->increments('id');
 			$table->integer('user_id')->unsigned();
 			$table->integer('book_id')->unsigned();
 			$table->foreign('user_id')->references('id')->on('users');
 			$table->foreign('book_id')->references('id')->on('books');
-			$table->primary(array('user_id','book_id'));
 			$table->integer('lend_date');
 			$table->integer('due_date');
 			$table->integer('return_date');

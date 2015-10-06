@@ -1,6 +1,11 @@
-@extends('app')
+@extends('master')
 
 @section('content')
+<div class = "container">
+<div class ="row">
+<div class="col-md-10 col-md-offset-1">
+<div class ="panel panel-default">
+<div class ="panel-body">
 <p>
 book_name :
 {{ $books->book_name }}
@@ -30,4 +35,9 @@ url :
 in_use :
 {{ $books->in_use }}
 </p>
+</div>
+</div>
+</div>
+</div>
+</div>
 @endsection
