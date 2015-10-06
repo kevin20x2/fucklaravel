@@ -22,14 +22,16 @@ class UserTableSeeder extends Seeder {
 		'name' => '郑文凯',
 		'email' => '123@qq.com',
 		'password' => Hash::make('123'),
-		'is_admin' => 1
+		'is_admin' => 1,
+            'reserve_num' => 1,
 		]);
 		User::create([
 		'id' => '2',
 		'name' => '陈翔宇',
 		'email' => '1@qq.com',
 		'password' => Hash::make('1'),
-		'is_admin' =>0
+		'is_admin' =>0,
+            'reserve_num' => 10,
 		]);
 		DB::table('books') -> delete();
 		Book::create([

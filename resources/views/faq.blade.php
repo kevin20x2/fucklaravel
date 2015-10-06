@@ -12,7 +12,7 @@
 @foreach ($faqs as $book)
 <hr>
 <div class="book">
-		<a href="{{ URL('admin/books/'.$book->id.'') }}"><h4>{{ $book->book_name }}</h4></a>
+		<a href="{{ URL('books/'.$book->id.'') }}"><h4>{{ $book->book_name }}</h4></a>
 		<div class="content">
 		<p>
 			{{ $book->author }}

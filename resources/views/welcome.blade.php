@@ -1,7 +1,7 @@
 @extends('master')   {{-- 继承master模版 --}}
 
 @section('title')   {{-- 对应@yield('title') --}}
-    学生成绩管理系统
+    图书信息查询系统
 @stop
 
 @section('content')   {{-- 对应@yield('content') --}}
