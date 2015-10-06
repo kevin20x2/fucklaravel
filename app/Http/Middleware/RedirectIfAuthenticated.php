@@ -38,7 +38,8 @@ class RedirectIfAuthenticated {
 		{
 			if(!Auth::user()->is_admin)
 			{
-				return new RedirectResponse(url('/user/home'));
+//				return new RedirectResponse(url('/'));
+				return view('welcome');
 			} else {
 				return new RedirectResponse(url('/admin'));
 			}

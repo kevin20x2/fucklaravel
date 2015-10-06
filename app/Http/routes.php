@@ -37,6 +37,8 @@ Route::resource('admin/books', 'Admin\BooksController');
 Route::resource('admin/lends', 'Admin\LendsController');
 Route::get('faq','FaqController@index');
 
+Route::get('books/{id}', 'Admin\BooksController@show');
+
 Route::get('admin/books/create',[
 	'as' => 'book_create','uses' => 'Admin\BooksController@create'
 ]);

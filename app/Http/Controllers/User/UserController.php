@@ -21,10 +21,11 @@ class UserController extends Controller {
 	{
 		$querys = DB::table('lends')
 		->join('books','lends.book_id','=','books.id')
-		->select('book_name','author','lend_date','due_date','is_returned')
+		->select('book_id', 'book_name','author','lend_date','due_date','is_returned')
 		->where('user_id',Auth::user()->id)
 		->get();
-		var_dump($querys);
+		$today = strtotime('today');
+//		var_dump($querys);
 		return view('user.home')->with('querys',$querys);
 	}
 	public function edit()

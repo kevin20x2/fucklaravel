@@ -43,7 +43,12 @@ class LendsController extends Controller {
 		$lend = new Lend;
 		$lend ->user_id = Input::get('user_id');
 		$lend->book_id = Input::get('book_id');
-		$lend->lend_date = date('Ymd');
+
+		$lend_date = strtotime('today');
+		$due_date = strtotime('+30 days', $lend_date);
+		$lend->lend_date = $lend_date;
+		$lend->due_date = $due_date;
+		$lend->return_date = 0;
 		$lend->continued = 0;
 		$lend->is_returned = 0;
 		if($lend ->save())
