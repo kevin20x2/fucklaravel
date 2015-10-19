@@ -13,6 +13,7 @@
 
         <a href="{{ URL('admin/books/create') }}" class="btn btn-lg btn-primary">插入♂一本书</a>
         <a href="{{ URL('admin/lends') }}" class="btn btn-lg btn-primary">借书</a>
+        <a href="{{ URL('admin/return') }}" class="btn btn-lg btn-primary">还书</a>
 
           @foreach ($books as $book)
             <hr>

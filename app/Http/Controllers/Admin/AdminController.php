@@ -19,7 +19,7 @@ class AdminController extends Controller {
 	public function index()
 	{
 		//
-		return view('AdminHome')->withBooks(Book::all());
+		return view('admin')->withBooks(Book::all());
 	}
 
 	/**
