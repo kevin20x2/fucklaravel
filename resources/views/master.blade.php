@@ -21,7 +21,12 @@
                     <a class="navbar-brand" href="/">图书信息查询</a>
                 @else
                     @if (Auth::user()->is_admin)
-                        <a class="navbar-brand" href="/admin">图书信息查询</a>
+                        <a class="navbar-brand" href="/admin">管理员功能页</a>
+                        <ul class="nav navbar-nav navbar-left">
+                            <li><a href="{{ URL('admin/books/create') }}">添加一本书</a></li>
+                            <li><a href="{{ URL('admin/lends') }}">借书</a></li>
+                            <li><a href="{{ URL('admin/return') }}">还书</a></li>
+                        </ul>
                     @else
                         <a class="navbar-brand" href="/">图书信息查询</a>
                     @endif
@@ -30,19 +35,10 @@
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="http://www.golaravel.com" target="__blank">Power by laravel5</a></li>
-            </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Auth::guest())
 						<li> <a href="{{ url('/login') }}">登录</a></li>
                     @else
-                        {{--<li class="dropdown">--}}
-                            {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>--}}
-                            {{--<ul class="dropdown-menu" role="menu">--}}
-                                {{--<li><a href="{{ url('/logout') }}">退出</a></li>--}}
-                            {{--</ul>--}}
-                        {{--</li>--}}
                         <li><a href="{{ url('/user/home') }}">{{ Auth::user()->name }}</a></li>
                         <li><a href="{{ url('/logout') }}">退出</a></li>
                     @endif
