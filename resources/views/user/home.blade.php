@@ -46,7 +46,7 @@
                                     {{--<br />--}}
                                     作者: {{ $query->author }}
                                     {{--<br />--}}
-                                    借书时间: {{ $query->lend_date }}
+                                    借书时间: {{ date('Y-m-d', $query->lend_date) }}
                                     {{--<hr />--}}
                                 </div>
                             </label>
