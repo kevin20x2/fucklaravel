@@ -1,43 +1,40 @@
 @extends('master')
 
 @section('content')
-<div class = "container">
-<div class ="row">
-<div class="col-md-10 col-md-offset-1">
-<div class ="panel panel-default">
-<div class ="panel-body">
-<p>
-book_name :
-{{ $books->book_name }}
-</p>
-
-<p>
-author :
-{{ $books->author }}
-</p>
-<p>
-ISBN :
-{{ $books->ISBN }}
-</p>
-<p>
-press_name :
-{{ $books->press_name }}
-</p>
-<p>
-press_date :
-{{ $books->press_date }}
-</p>
-<p>
-url :
-{{ $books->url }}
-</p>
-<p>
-in_use :
-{{ $books->in_use }}
-</p>
-</div>
-</div>
-</div>
-</div>
-</div>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>项目</th>
+                    <th>内容</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>书名</td>
+                    <td>{{ $book->book_name }}</td>
+                </tr>
+                <tr>
+                    <td>作者</td>
+                    <td>{{ $book->author }}</td>
+                </tr>
+                <tr>
+                    <td>ISBN</td>
+                    <td>{{ $book->ISBN }}</td>
+                </tr>
+                <tr>
+                    <td>出版社</td>
+                    <td>{{ $book->press_name }}</td>
+                </tr>
+                <tr>
+                    <td>出版日期</td>
+                    <td>{{ $book->press_date }}</td>
+                </tr>
+                <tr>
+                    <td>in_use</td>
+                    <td>{{ $book->in_use }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 @endsection
