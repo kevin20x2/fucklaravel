@@ -46,9 +46,11 @@ Route::get('admin/books/create',[
 	'as' => 'book_create','uses' => 'Admin\BooksController@create'
 ]);
 
-Route::get('user/reserve',[
-	'as' => 'user_reserve' ,'uses' => 'User\ReserveController@work'
-]);
+//Route::get('user/reserve',[
+//	'as' => 'user_reserve' ,'uses' => 'User\ReserveController@work'
+//]);
 
 Route::resource('admin','Admin\AdminController');
 Route::resource('user/renew', 'User\RenewController');
+
+Route::resource('user/reserve', 'User\ReserveController');

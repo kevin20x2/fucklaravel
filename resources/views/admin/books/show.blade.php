@@ -58,9 +58,19 @@
 
         </table>
         @if($book->in_use and !$reserve_too_many)
-        <button class="btn btn-primary reserve-btn">
-            预约这本
-        </button>
+        <form action="/user/reserve" method="post">
+            <input type="hidden" name="book-id" value="{{ $book->id }}">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <button type="submit" class="btn btn-primary reserve-btn">
+                预约这本
+            </button>
+        </form>
+
+        @elseif($already_reserve)
+            <div class="tip">
+                你已经预约这本书了
+            </div>
+
         @else
             <div class="tip">
                 你还不能预约这本哦~

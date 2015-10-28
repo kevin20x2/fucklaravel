@@ -5,40 +5,31 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Reserve;
-use Redirect;
+use Redirect, Input, Auth;
 
 class ReserveController extends Controller {
 
-	//
-	public function work(Request $request)
-	{
-		$user = $request->get('user_id');
-		echo $user;
-		if($user==NULL){
-			session()->flash('message_warning','没有登录!');
-			return Redirect::back()
-			->withInput()
-			->withErrors('没有登录!');
-		}
-		else {
-		$book_id = $request->get('book_id');
-		$reserve = new Reserve;
-		$reserve -> user_id = $user;
-		$reserve -> book_id = $book_id;
-		$reserve -> reserve_date = date('Ymd');
-		if($reserve->save())
-		{
-			session()->flash('message_success','保存成功!');
-			echo 'sucess';
-			return Redirect::back();
-		}
-		else {
-			return Redirect::back()
-			->withInput()
-			->withErrors('fail!');
-		}
-
-		}
+	public function __construct() {
+		$this->middleware('auth');
 	}
 
+	public function index() {
+		return 'this is user/reserve';
+	}
+
+	public function store(Request $request) {
+		$today = strtotime('today');
+		$over_date = strtotime('+15 days', $today);
+
+		$book_id = Input::get('book-id');
+//		var_dump($book_id);
+		$reserve = new Reserve;
+		$reserve->user_id = Auth::user()->id;
+		$reserve->book_id = intval($book_id);
+		$reserve->reserve_date = $today;
+		$reserve->over_date = $over_date;
+		$reserve->save();
+
+		return Redirect::to("/books/$book_id")->with('message_success', '你已成功预约本书');
+	}
 }

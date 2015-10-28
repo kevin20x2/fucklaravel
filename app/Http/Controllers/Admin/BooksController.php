@@ -80,7 +80,7 @@ class BooksController extends Controller {
 		$result = DB::table('reserves')
 			->select('id')
 			->where('book_id', $id)
-			->where('over_date', '<', $today)
+			->where('over_date', '>', $today)
 			->get();
 		$reserve_num = count($result);
 
@@ -89,14 +89,24 @@ class BooksController extends Controller {
 		$user_reserve_record = DB::table('reserves')
 			->select('id')
 			->where('user_id', $user_id)
-			->where('over_date', '<', $today)
+			->where('over_date', '>', $today)
 			->get();
 		$user_reserve_count = count($user_reserve_record);
 		$reserve_too_many = $user_reserve_count > 0;
 
+		// 已经预约这本
+		$result = DB::table('reserves')
+			->select('id')
+			->where('user_id', $user_id)
+			->where('book_id', $id)
+			->where('over_date', '>', $today)
+			->get();
+		$already_reserve = count($result) > 0;
+
 		return view('admin.books.show')->withBook(Book::find($id))
 			->with('reserve_num', $reserve_num)
-			->with('reserve_too_many', $reserve_too_many);
+			->with('reserve_too_many', $reserve_too_many)
+			->with('already_reserve', $already_reserve);
 	}
 
 	/**
