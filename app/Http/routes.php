@@ -35,6 +35,9 @@ Route::post('user/update',[
 ]);
 Route::resource('admin/books', 'Admin\BooksController');
 Route::resource('admin/lends', 'Admin\LendsController');
+Route::resource('admin/return', 'Admin\ReturnController',
+	['only' => ['index', 'store']]);
+//Route::get('admin/return', 'Admin\ReturnController@index');
 Route::get('faq','FaqController@index');
 
 Route::get('books/{id}', 'Admin\BooksController@show');
@@ -48,3 +51,4 @@ Route::get('user/reserve',[
 ]);
 
 Route::resource('admin','Admin\AdminController');
+Route::resource('user/renew', 'User\RenewController');

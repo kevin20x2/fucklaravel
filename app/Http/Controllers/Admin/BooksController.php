@@ -74,8 +74,8 @@ class BooksController extends Controller {
 	 */
 	public function show($id)
 	{
-		return view('admin.books.show')->withBooks(Book::find($id));
-		
+		return view('admin.books.show')->withBook(Book::find($id));
+
 	}
 
 	/**
