@@ -31,12 +31,13 @@
                 </div>
 
                 @if(count($querys) != 0)
-                <form role="form">
+                <form role="form" action="{{ URL('/user/renew') }}" method="POST">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     @foreach ($querys as $query)
                     <div class="panel-body">
                         <div class="checkbox">
                             <label>
-                            <input type="checkbox" value="" name="{{ $query->book_id }}">
+                            <input type="checkbox" value="{{ $query->book_id }}" name="checkbox[]">
                                 <div class="lend-mes">
                                     书名:
                                     <a href="/books/{{ $query->book_id }}">
@@ -48,6 +49,7 @@
                                     {{--<br />--}}
                                     借书时间: {{ date('Y-m-d', $query->lend_date) }}
                                     {{--<hr />--}}
+                                    到期时间：{{ date('Y-m-d', $query->due_date) }}
                                 </div>
                             </label>
                         </div>

@@ -51,3 +51,4 @@ Route::get('user/reserve',[
 ]);
 
 Route::resource('admin','Admin\AdminController');
+Route::resource('user/renew', 'User\RenewController');
