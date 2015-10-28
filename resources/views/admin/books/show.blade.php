@@ -1,5 +1,13 @@
 @extends('master')
 
+@section('title')
+{{ $book->book_name }}
+@endsection
+
+@section('css')
+<link rel="stylesheet" href="{{ URL::asset('css/book_show.css') }}">
+@endsection
+
 @section('content')
     <div class="container">
         <table class="table">
@@ -31,10 +39,30 @@
                     <td>{{ $book->press_date }}</td>
                 </tr>
                 <tr>
-                    <td>in_use</td>
-                    <td>{{ $book->in_use }}</td>
+                    <td>当前状态</td>
+                    <td>
+                        @if($book->in_use)
+                            有人在看
+                        @else
+                            可以借走
+                        @endif
+                    </td>
                 </tr>
+                @if($book->in_use)
+                <tr>
+                    <td>当前预约人数</td>
+                    <td>{{ $reserve_num }}</td>
+                </tr>
+                @endif
             </tbody>
+
         </table>
+        @if($book->in_use)
+        <button class="btn btn-primary reserve-btn">
+            预约这本
+        </button>
+        @endif
+
     </div>
+
 @endsection

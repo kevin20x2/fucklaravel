@@ -4,7 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Book;
-
+use App\Reserve;
 use Redirect , Input, Auth;
 
 use Illuminate\Http\Request;
@@ -74,8 +74,8 @@ class BooksController extends Controller {
 	 */
 	public function show($id)
 	{
-		return view('admin.books.show')->withBook(Book::find($id));
-
+//		Reserve::find()
+		return view('admin.books.show')->withBook(Book::find($id))->with('reserve_num', 666);
 	}
 
 	/**
