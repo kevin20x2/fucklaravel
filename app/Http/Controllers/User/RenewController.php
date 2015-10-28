@@ -64,7 +64,7 @@ class RenewController extends Controller {
 
         }
 
-        return Redirect::to('/user/home');
+        return Redirect::to('/user/home')->with('message_success', '续借完成！');
     }
 
 }
