@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use App\Book;
 use App\Reserve;
-use Redirect , Input, Auth;
+use Redirect , Input, Auth, DB;
 
 use Illuminate\Http\Request;
 
@@ -74,8 +74,12 @@ class BooksController extends Controller {
 	 */
 	public function show($id)
 	{
-//		Reserve::find()
-		return view('admin.books.show')->withBook(Book::find($id))->with('reserve_num', 666);
+		$result = DB::table('reserves')
+			->select('id')
+			->where('book_id', $id)
+			->get();
+		$reserve_num = count($result);
+		return view('admin.books.show')->withBook(Book::find($id))->with('reserve_num', $reserve_num);
 	}
 
 	/**
