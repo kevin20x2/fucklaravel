@@ -57,10 +57,14 @@
             </tbody>
 
         </table>
-        @if($book->in_use)
+        @if($book->in_use and !$reserve_too_many)
         <button class="btn btn-primary reserve-btn">
             预约这本
         </button>
+        @else
+            <div class="tip">
+                你还不能预约这本哦~
+            </div>
         @endif
 
     </div>
