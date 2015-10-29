@@ -4,6 +4,10 @@
     图书信息查询系统
 @stop
 
+@section('css')
+<link rel="stylesheet" href="{{ URL::asset('css/welcome.css') }}">
+@stop
+
 @section('content')   {{-- 对应@yield('content') --}}
     <div class="container">
         <div class="jumbotron">
