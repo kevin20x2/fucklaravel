@@ -4,8 +4,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Book;
-
-use Redirect , Input, Auth;
+use App\Reserve;
+use Redirect , Input, Auth, DB;
 
 use Illuminate\Http\Request;
 
@@ -74,8 +74,39 @@ class BooksController extends Controller {
 	 */
 	public function show($id)
 	{
-		return view('admin.books.show')->withBook(Book::find($id));
+		$today = strtotime('today');
 
+		// 这本书被预约次数
+		$result = DB::table('reserves')
+			->select('id')
+			->where('book_id', $id)
+			->where('over_date', '>', $today)
+			->get();
+		$reserve_num = count($result);
+
+		// 用户预约书数目
+		$user_id = Auth::user()->id;
+		$user_reserve_record = DB::table('reserves')
+			->select('id')
+			->where('user_id', $user_id)
+			->where('over_date', '>', $today)
+			->get();
+		$user_reserve_count = count($user_reserve_record);
+		$reserve_too_many = $user_reserve_count > 0;
+
+		// 已经预约这本
+		$result = DB::table('reserves')
+			->select('id')
+			->where('user_id', $user_id)
+			->where('book_id', $id)
+			->where('over_date', '>', $today)
+			->get();
+		$already_reserve = count($result) > 0;
+
+		return view('admin.books.show')->withBook(Book::find($id))
+			->with('reserve_num', $reserve_num)
+			->with('reserve_too_many', $reserve_too_many)
+			->with('already_reserve', $already_reserve);
 	}
 
 	/**
